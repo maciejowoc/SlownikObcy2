@@ -1,0 +1,43 @@
+﻿@page
+@model SlownikObcy2.Pages.TlumaAngielski.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta charset="UTF-8" />
+    @section Styles {
+        <link href="@Url.Content("~/css/Ang.css")" rel="stylesheet" />
+    }
+</head>
+<div id="tresc" style="width: 50%; margin-left: 25%;">
+    <h1>Edytuj hasło słownikowe</h1>
+    <hr />
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Angielski.ID" />
+            <div class="form-group">
+                <label asp-for="Angielski.Obcy" class="control-label">Obca fraza:</label>
+                <input asp-for="Angielski.Obcy" class="form-control" />
+                <span asp-validation-for="Angielski.Obcy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Angielski.Polski" class="control-label">Polska fraza:</label>
+                <input asp-for="Angielski.Polski" class="form-control" />
+                <span asp-validation-for="Angielski.Polski" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <input type="submit" value="Zapisz" class="btn btn-outline-success" />
+                    <a asp-page="./Index" class="btn btn-outline-danger">Powrót do słownika</a>
+                </div>
+            </div>
+        </form>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

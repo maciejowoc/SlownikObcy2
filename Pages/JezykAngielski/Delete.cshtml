@@ -1,0 +1,35 @@
+﻿@page
+@model SlownikObcy2.Pages.TlumaAngielski.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Usuwanie hasła</h1>
+
+<h3>Czy na pewno chcesz usunąć to hasło?</h3>
+<div>
+    <h4>Angielski</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Angielski.Obcy)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Angielski.Obcy)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Angielski.Polski)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Angielski.Polski)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Angielski.ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

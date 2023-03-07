@@ -1,0 +1,52 @@
+﻿@page
+@model SlownikObcy2.Pages.TlumaJaponski.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta charset="UTF-8" />
+    @section Styles {
+        <link href="@Url.Content("~/css/Jap.css")" rel="stylesheet" />
+    }
+</head>
+
+<div id="tresc" class="align-content-center" style="width:50%; margin-left:25%;">
+    <h1>Dodaj nowe hasło</h1>
+    <hr />
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Japonski.Romaji" class="control-label">Romaji:</label>
+                    <input asp-for="Japonski.Romaji" class="form-control" />
+                    <span asp-validation-for="Japonski.Romaji" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Japonski.Polski" class="control-label">Polska fraza:</label>
+                    <input asp-for="Japonski.Polski" class="form-control" />
+                    <span asp-validation-for="Japonski.Polski" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Japonski.Kana" class="control-label">Znaki kany:</label>
+                    <input asp-for="Japonski.Kana" class="form-control" />
+                    <span asp-validation-for="Japonski.Kana" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Japonski.Kanji" class="control-label">Zapis w znakach kanji:</label>
+                    <input asp-for="Japonski.Kanji" class="form-control" />
+                    <span asp-validation-for="Japonski.Kanji" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <input type="submit" value="Dodaj" class="btn btn-outline-success" />
+                        <a asp-page="Index" class=" btn btn-outline-danger">Powrót do słownika</a>
+                    </div>
+                </div>
+            </form>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

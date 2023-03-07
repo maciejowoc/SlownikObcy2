@@ -1,0 +1,25 @@
+﻿body {
+    background-image: url("Fudzi.jpg");
+    background-size: cover;
+}
+
+.przyciski {
+    text-align: center;
+}
+
+#tresc {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #efe6e6;
+    opacity: 0.95;
+    display: block;
+    border-radius: 5px;
+}
+
+    #tresc h1 {
+        margin-bottom: 20px;
+    }
+
+th {
+    text-align: center;
+}

@@ -1,0 +1,45 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<head>
+    <meta charset="UTF-8" />
+    @section Styles {
+        <link href="@Url.Content("~/css/Okladki.css")" rel="stylesheet" />
+    }
+</head>
+
+<div class="text-center">
+    <h1 class="display-4">Słownik języków obcych</h1>
+    <p>Aby wybrać dany słownik wybierz go z menu listy rozwijanej lub z poniższych grafik:</p>
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="wrapperKart col-4">
+        <section id="ang" class="jumbotronX" onclick="redirectAngielski()" style="cursor: pointer;">
+            <div class="overlayX"></div>
+            <div class="innerX">
+                <h1>Angielski</h1>
+            </div>
+        </section>
+    </div>
+    <div class="col-1"></div>
+    <div class="wrapperKart col-4">
+        <section id="jap" class="jumbotronX" onclick="redirectJaponski()" style="cursor: pointer;">
+            <div class="overlayX"></div>
+            <div class="innerX">
+                <h1>Japoński</h1>
+            </div>
+        </section>
+    </div>
+</div>
+<script>
+    function redirectJaponski() {
+        document.location = './JezykJaponski/Index';
+    }
+    function redirectAngielski() {
+        document.location = './JezykAngielski/Index';
+    }
+</script>

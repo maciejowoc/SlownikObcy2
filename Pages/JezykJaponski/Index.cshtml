@@ -1,0 +1,117 @@
+﻿@page
+@model SlownikObcy2.Pages.TlumaJaponski.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    @section Styles {
+        <link href="@Url.Content("~/css/Jap.css")" rel="stylesheet" />
+    }
+</head>
+<body>
+    <div id="tresc">
+        <h1>Słownik języka japońskiego</h1>
+
+
+        <form method="get" style="margin-bottom: 5px;">
+            <div class="row">
+                <div class="col-8">
+                    <p>
+                        Podaj szukaną frazę: <input type="text" asp-for="SzukanaFraza" />
+                        <input type="submit" value="Szukaj" class="btn btn-warning" />
+                    </p>
+                </div>
+                <div class="col-4 align-content-center">
+                    <a asp-page="Create" class="btn btn-success" style="padding: 10px;">Dodaj nowe hasło</a>
+                </div>
+            </div>
+        </form>
+
+        @if (Model.Message != null)
+        {
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @Model.Message
+            </div>
+        }
+
+        <form method="post">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <a asp-page="./Index" asp-route-SortOrder="@Model.RomajiSort"
+                               asp-route-currentFilter="@Model.CurrentFilter">
+                                @Html.DisplayNameFor(model => model.Japonski[0].Romaji)
+                            </a>
+                        </th>
+                        <th>
+                            <a asp-page="./Index" asp-route-SortOrder="@Model.PolskiSort"
+                               asp-route-currentFilter="@Model.CurrentFilter">
+                                @Html.DisplayNameFor(model => model.Japonski[0].Polski)
+                            </a>
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Japonski[0].Kana)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Japonski[0].Kanji)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Japonski)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Romaji)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Polski)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Kana)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Kanji)
+                            </td>
+                            <td class="przyciski">
+                                <a asp-page="./Edit" asp-route-id="@item.ID" class="btn btn-info btn-sm">Edytuj</a>
+                                <button asp-page-handler="Delete" asp-route-id="@item.ID"
+                                        onclick="return confirm('Czy na pewno chcesz usunąć wybrane hasło?')" class="btn btn-danger btn-sm">
+                                    Usuń
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @{
+                var prevDisabled = !Model.Japonski.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.Japonski.HasNextPage ? "disabled" : "";
+            }
+            <a asp-page="./Index"
+               asp-route-sortOrder="@Model.CurrentSort"
+               asp-route-pageIndex="@(Model.Japonski.PageIndex - 1)"
+               asp-route-currentFilter="@Model.CurrentFilter"
+               class="btn btn-outline-dark @prevDisabled">
+                Poprzednia
+            </a>
+            <a asp-page="./Index"
+               asp-route-sortOrder="@Model.CurrentSort"
+               asp-route-pageIndex="@(Model.Japonski.PageIndex + 1)"
+               asp-route-currentFilter="@Model.CurrentFilter"
+               class="btn btn-outline-dark @nextDisabled">
+                Następna
+            </a>
+        </form>
+    </div>
+</body>
+</html>
